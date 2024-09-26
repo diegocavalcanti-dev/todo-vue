@@ -20,22 +20,22 @@ import { reactive } from 'vue';
   ]
   })
 
-  const getTarefaPendentes = () => {
+  const getTarefasPendentes = () => {
     return estado.tarefas.filter( tarefa => !tarefa.finalizada)
   }
 
-  const getTarefaFinalizadas = () => {
+  const getTarefasFinalizadas = () => {
     return estado.tarefas.filter( tarefa => tarefa.finalizada)
   }
 
-  const getTarefaFiltradas = () => {
+  const getTarefasFiltradas = () => {
     const {filtro} = estado;
 
     switch (filtro) {
       case 'pendentes':
-        return getTarefaPendentes();
+        return getTarefasPendentes();
       case 'finalizadas':
-        return getTarefaFinalizadas();
+        return getTarefasFinalizadas();
       default:
         return estado.tarefas;
     }
@@ -57,7 +57,7 @@ import { reactive } from 'vue';
     <header class="p-5 mb-4 mt-4 bg-light rounded-3">
       <h1>Minhas tarefas</h1>
       <p>
-        Você possui {{ getTarefaPendentes().length }} tarefas pendentes
+        Você possui {{ getTarefasPendentes().length }} tarefas pendentes
       </p>
     </header>
     <form @submit.prevent="cadastraTarefa">
@@ -78,7 +78,7 @@ import { reactive } from 'vue';
       </div>
     </form>
     <ul class="list-group mt-4">
-      <li class="list-group-item" v-for="tarefa in getTarefaFiltradas()" :key="tarefa.titulo">
+      <li class="list-group-item" v-for="tarefa in getTarefasFiltradas()" :key="tarefa.titulo">
         <input @change="evento => tarefa.finalizada = evento.target.checked" :checked="tarefa.finalizada" :id="tarefa.titulo" type="checkbox">
         <label :class="{ done: tarefa.finalizada }" class="ms-3" :for="tarefa.titulo">
           {{ tarefa.titulo }}
