@@ -5,7 +5,7 @@
 <template>
     <form @submit.prevent="props.cadastraTarefa">
         <div class="row">
-            <div class="col">
+            <div class="col"> 
                 <input :value="props.tarefaTemp" @change="props.editaTarefaTemp" required
                     type="text" placeholder="Digite a descrição da tarefa" class="form-control">
             </div>
